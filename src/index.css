@@ -8,33 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Indian Folk Art Inspired Color Palette */
+    --background: 35 25% 97%;
+    --foreground: 25 40% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 35 30% 98%;
+    --card-foreground: 25 40% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 35 30% 98%;
+    --popover-foreground: 25 40% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Rich orange-red inspired by traditional Indian art */
+    --primary: 18 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 25 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm golden secondary */
+    --secondary: 45 100% 85%;
+    --secondary-foreground: 25 40% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Soft earthy muted tones */
+    --muted: 35 20% 92%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Vibrant green accent */
+    --accent: 155 60% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 15% 88%;
+    --input: 35 15% 88%;
+    --ring: 18 85% 55%;
+
+    /* Custom folk art colors */
+    --folk-orange: 25 90% 60%;
+    --folk-red: 10 80% 50%;
+    --folk-yellow: 45 95% 65%;
+    --folk-green: 155 60% 45%;
+    --folk-brown: 25 40% 35%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-warm: linear-gradient(135deg, hsl(var(--folk-orange)), hsl(var(--folk-yellow)));
+    --gradient-cultural: linear-gradient(135deg, hsl(var(--folk-red)), hsl(var(--primary)));
+    --gradient-earth: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Shadows with cultural warmth */
+    --shadow-warm: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-cultural: 0 8px 25px -8px hsl(var(--folk-orange) / 0.4);
+    --shadow-soft: 0 4px 15px -4px hsl(var(--border) / 0.6);
 
     --radius: 0.5rem;
 
