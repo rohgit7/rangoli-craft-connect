@@ -45,6 +45,9 @@ const Navbar = () => {
               <Link to="/login">Login</Link>
             </Button>
             <Button variant="hero" asChild>
+              <Link to="/art">Personalize your art</Link>
+            </Button>
+            <Button variant="hero" asChild>
               <Link to="/register">Join as Artist</Link>
             </Button>
           </div>
