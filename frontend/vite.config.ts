@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+   allowedHosts: [
+      'rangoli-craft-connect-3.onrender.com'
+    ],
   plugins: [
     react(),
     mode === 'development' &&
