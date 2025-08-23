@@ -21,14 +21,39 @@ const ArtistRegistration = () => {
     "Other",
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Artist Registered:", formData);
-    alert("Artist registered successfully!");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/artists/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error || "Registration failed");
+
+      alert(data.message);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        artForm: "",
+        bio: "",
+      });
+    } catch (err: any) {
+      alert(err.message);
+    }
   };
 
   return (
@@ -38,7 +63,6 @@ const ArtistRegistration = () => {
           Artist Registration
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
-          
           <input
             type="text"
             name="name"
@@ -48,7 +72,6 @@ const ArtistRegistration = () => {
             required
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <input
             type="email"
             name="email"
@@ -58,7 +81,6 @@ const ArtistRegistration = () => {
             required
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <input
             type="password"
             name="password"
@@ -68,7 +90,6 @@ const ArtistRegistration = () => {
             required
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <input
             type="password"
             name="confirmPassword"
@@ -78,7 +99,6 @@ const ArtistRegistration = () => {
             required
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <input
             type="tel"
             name="phone"
@@ -87,7 +107,6 @@ const ArtistRegistration = () => {
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <select
             name="artForm"
             value={formData.artForm}
@@ -102,7 +121,6 @@ const ArtistRegistration = () => {
               </option>
             ))}
           </select>
-
           <textarea
             name="bio"
             placeholder="Tell us about yourself and your art"
@@ -111,7 +129,6 @@ const ArtistRegistration = () => {
             rows={4}
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
           />
-
           <button
             type="submit"
             className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition"

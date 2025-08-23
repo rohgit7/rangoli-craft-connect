@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Clock, MapPin, Users, Star, Filter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const workshops = [
   {
@@ -272,7 +273,7 @@ const Workshops = () => {
                     {workshop.capacity - workshop.enrolled} spots remaining
                   </div>
                 </div>
-                
+              <Link to="/workshops" className="w-full">  
                 <Button 
                   variant="hero" 
                   className="w-full"
@@ -280,6 +281,7 @@ const Workshops = () => {
                 >
                   {workshop.enrolled >= workshop.capacity ? "Workshop Full" : "Book Workshop"}
                 </Button>
+              </Link>
               </CardContent>
             </Card>
           ))}

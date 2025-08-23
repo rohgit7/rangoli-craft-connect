@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 
+
+
+
 const artforms = [
   {
     id: 1,
@@ -26,7 +29,7 @@ const artforms = [
     region: "Madhya Pradesh",
     description: "Intricate art form featuring dots and lines to create elaborate patterns inspired by nature.",
     period: "Ancient",
-    image: "bg-gradient-primary",
+    image:"bg-gradient-primary",
   },
   {
     id: 4,

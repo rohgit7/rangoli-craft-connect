@@ -1,25 +1,53 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!email || !password) {
       setError("Please fill in all fields.");
       return;
     }
 
-    // Mock login (replace later with backend API call)
-    if (email === "user@example.com" && password === "123456") {
-      alert("Login successful!");
-      setError("");
-    } else {
-      setError("Invalid email or password.");
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Login failed");
+      } else {
+        // Store token or user data if returned
+        localStorage.setItem("token", data.token || "");
+        alert("Login successful!");
+
+        // Clear form
+        setEmail("");
+        setPassword("");
+
+        // Redirect to home page
+        navigate("/"); 
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,7 +63,6 @@ const login = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Email
@@ -49,7 +76,6 @@ const login = () => {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password
@@ -63,25 +89,24 @@ const login = () => {
             />
           </div>
 
-          {/* Button */}
           <button
             type="submit"
-            className="w-full bg-amber-600 text-white py-2 rounded-lg shadow hover:bg-amber-700 transition"
+            disabled={loading}
+            className="w-full bg-amber-600 text-white py-2 rounded-lg shadow hover:bg-amber-700 transition disabled:opacity-50"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        {/* Footer */}
         <p className="text-sm text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-amber-700 hover:underline">
+          <Link to="/signup" className="text-amber-700 hover:underline">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default login;
+export default Login;

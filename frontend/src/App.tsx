@@ -11,6 +11,9 @@ import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import ArtistReg from "./pages/ArtistReg";
+import ArtformDetails from "./pages/ArtformDetails";
+import Signup from "./pages/Signup";
+import WorkshopRegistration from "./pages/WorkshopRegistration";
 import TransformMemories from "./pages/TransformMemories";
 const queryClient = new QueryClient();
 
@@ -27,8 +30,11 @@ const App = () => (
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/workshops" element={<WorkshopRegistration />} />
           <Route path="/art" element={<TransformMemories />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/register" element={<ArtistReg />} />
+          <Route path="/artforms/:id" element={<ArtformDetails />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
