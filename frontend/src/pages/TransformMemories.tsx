@@ -30,7 +30,7 @@ const TransformMemories = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/transform", {
+      const res = await fetch("https://rangoli-craft-connect-2.onrender.com//api/transform", {
         method: "POST",
         body: formData,
       });
