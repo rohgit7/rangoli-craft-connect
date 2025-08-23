@@ -7,8 +7,10 @@ import Index from "./pages/Index";
 import Artforms from "./pages/Artforms";
 import Artists from "./pages/Artists";
 import Workshops from "./pages/Workshops";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
-
+import Login from "./pages/Login";
+import ArtistReg from "./pages/ArtistReg";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -22,6 +24,9 @@ const App = () => (
           <Route path="/artforms" element={<Artforms />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/workshops" element={<Workshops />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<ArtistReg />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
